@@ -50,5 +50,29 @@ def chooseBestFeatureToSplit(dataSet):  #选择最好的数据集划分方式
         if infoGain > bestInfoGain: #更新最好的信息增益
             bestInfoGain = infoGain
             bestFeature = i
-            print("here")
     return bestFeature
+
+def majorityCnt(classList): #返回出现次数最多的分类名称
+    classCount = {} #名称与次数字典
+    for vote in classList:
+        if vote not in classCount.keys():   classCount[vote] = 0
+        classCount[vote] += 1
+    sortedClassCount = sorted(classCount.iteritems(), key = operator.itemgetter(1), reverse = True) #按第二维次数排序，默认顺序从大到小
+    return sortedClassCount[0][0]
+
+def createTree(dataSet, labels):
+    classList = [example[-1] for example in dataSet]
+    if classList.count(classList[0]) == len(classList):
+        return classList[0]
+    if len(dataSet[0]) == 1:
+        return majorityCnt(classList)
+    bestFeat = chooseBestFeatureToSplit(dataSet)
+    bestFeatLabel = labels[bestFeat]
+    myTree = {bestFeatLabel:{}}
+    del(labels[bestFeat])
+    featValues = [example[bestFeat] for example in dataSet]
+    uniqueVals = set(featValues)
+    for value in uniqueVals:
+        subLabels = labels[:]
+        myTree[bestFeatLabel][value] = createTree(splitDataSet(dataSet, bestFeat, value), subLabels)
+    return myTree
