@@ -34,20 +34,21 @@ def splitDataSet(dataSet, axis, value): #按照给定特征划分数据集，axi
     return retDataSet
 
 def chooseBestFeatureToSplit(dataSet):  #选择最好的数据集划分方式
-    numFeatures = len(dataSet[0]) - 1
-    baseEntropy = calcShannonEnt(dataSet)
-    bestInfoGain = 0.0
-    bestFeature = -1
-    for i in range(numFeatures):
-        featList = [example[i] for example in dataSet]
+    numFeatures = len(dataSet[0]) - 1   #特征数量
+    baseEntropy = calcShannonEnt(dataSet)   #基础香农熵
+    bestInfoGain = 0.0  #最好的信息增益
+    bestFeature = -1    #得到最好的信息增益的划分特征
+    for i in range(numFeatures):    #计算每种划分方式的信息熵
+        featList = [example[i] for example in dataSet]  #第i个特征有featList这些值
         uniqueVals = set(featList)
         newEntropy = 0.0
-        for value in uniqueVals:
+        for value in uniqueVals:    #计算信息熵
             subDataSet = splitDataSet(dataSet, i, value)
             prob = len(subDataSet) / float(len(dataSet))
             newEntropy += prob * calcShannonEnt(subDataSet)
-        infoGain = baseEntropy - newbaseEntropy
-        if infoGain > bestInfoGain:
+        infoGain = baseEntropy - newEntropy
+        if infoGain > bestInfoGain: #更新最好的信息增益
             bestInfoGain = infoGain
             bestFeature = i
+            print("here")
     return bestFeature
