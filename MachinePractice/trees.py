@@ -76,3 +76,14 @@ def createTree(dataSet, labels):    #递归创建决策树
         subLabels = labels[:]   #递归建树
         myTree[bestFeatLabel][value] = createTree(splitDataSet(dataSet, bestFeat, value), subLabels)
     return myTree
+
+def classify(inputTree, featLabels, testVec):   #使用决策树的分类函数 testVec测试字典
+    firstStr = list(inputTree.keys())[0]
+    secondDict = inputTree[firstStr]
+    featIndex = featLabels.index(firstStr)  #通过标签找下标
+    for key in secondDict.keys():
+        if testVec[featIndex] == key:
+            if type(secondDict[key]).__name__=='dict':
+                classLabel = classify(secondDict[key], featLabels, testVec) #非叶节点就递归找
+            else:   classLabel = secondDict[key]    #叶节点就返回标签
+    return classLabel
