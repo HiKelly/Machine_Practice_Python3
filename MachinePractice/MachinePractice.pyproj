@@ -25,6 +25,9 @@
     <Compile Include="2.py" />
     <Compile Include="3.py" />
     <Compile Include="kNN.py" />
+    <Compile Include="treePlotter.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="trees.py" />
   </ItemGroup>
   <ItemGroup>

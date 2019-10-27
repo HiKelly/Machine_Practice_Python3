@@ -60,19 +60,19 @@ def majorityCnt(classList): #返回出现次数最多的分类名称
     sortedClassCount = sorted(classCount.iteritems(), key = operator.itemgetter(1), reverse = True) #按第二维次数排序，默认顺序从大到小
     return sortedClassCount[0][0]
 
-def createTree(dataSet, labels):
-    classList = [example[-1] for example in dataSet]
-    if classList.count(classList[0]) == len(classList):
+def createTree(dataSet, labels):    #递归创建决策树
+    classList = [example[-1] for example in dataSet]    #提取现有的类别数,下标-1为提取最后一列
+    if classList.count(classList[0]) == len(classList): #类别完全相同则停止继续划分
         return classList[0]
-    if len(dataSet[0]) == 1:
+    if len(dataSet[0]) == 1:    #遍历完所有特征时返回出现次数最多的
         return majorityCnt(classList)
-    bestFeat = chooseBestFeatureToSplit(dataSet)
+    bestFeat = chooseBestFeatureToSplit(dataSet)    #每次选取最好的信息增益的划分特征
     bestFeatLabel = labels[bestFeat]
-    myTree = {bestFeatLabel:{}}
-    del(labels[bestFeat])
-    featValues = [example[bestFeat] for example in dataSet]
+    myTree = {bestFeatLabel:{}} #字典类型的树
+    del(labels[bestFeat])   #在标签中删除掉已经完成分类的标签
+    featValues = [example[bestFeat] for example in dataSet] #获取该标签的所有值
     uniqueVals = set(featValues)
     for value in uniqueVals:
-        subLabels = labels[:]
+        subLabels = labels[:]   #递归建树
         myTree[bestFeatLabel][value] = createTree(splitDataSet(dataSet, bestFeat, value), subLabels)
     return myTree
