@@ -87,3 +87,15 @@ def classify(inputTree, featLabels, testVec):   #使用决策树的分类函数 
                 classLabel = classify(secondDict[key], featLabels, testVec) #非叶节点就递归找
             else:   classLabel = secondDict[key]    #叶节点就返回标签
     return classLabel
+
+#pickle库可以直接存储数据结果和从pk文件中读取数据结构
+def storeTree(inputTree, filename): #把决策树存储在硬盘上
+    import pickle
+    fw = open(filename, 'wb')   #要使用wb用二进制打开，pickle只支持二进制
+    pickle.dump(inputTree, fw)
+    fw.close()
+
+def grabTree(filename): #从硬盘上读取决策树
+    import pickle
+    fr = open(filename, 'rb')
+    return pickle.load(fr)

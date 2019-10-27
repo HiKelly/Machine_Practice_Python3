@@ -39,7 +39,6 @@ import treePlotter
 myTree=treePlotter.retrieveTree(0)
 myTree['no surfacing'][3] = 'maybe'
 treePlotter.createPlot(myTree)
-"""
 
 import treePlotter
 myDat, labels = trees.createDataSet()
@@ -47,3 +46,9 @@ print(labels)
 myTree = treePlotter.retrieveTree(0)
 print(trees.classify(myTree, labels, [1, 0]))
 print(trees.classify(myTree, labels, [1, 1]))
+"""
+import trees
+import treePlotter
+myTree = treePlotter.retrieveTree(0)
+trees.storeTree(myTree, 'classifierStorage.txt')
+print(trees.grabTree('classifierStorage.txt'))
