@@ -24,6 +24,12 @@
   <ItemGroup>
     <Compile Include="2.py" />
     <Compile Include="3.py" />
+    <Compile Include="4.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="bayes.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="kNN.py" />
     <Compile Include="treePlotter.py">
       <SubType>Code</SubType>
