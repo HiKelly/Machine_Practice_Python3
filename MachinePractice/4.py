@@ -21,4 +21,18 @@ print(p0V)
 print(p1V)
 """
 
-print(bayes.testingNB())
+#print(bayes.testingNB())
+"""
+import re
+mySent = 'This book is the best book on Python or M.L. I have ever laid eyes upon.'
+regEx = re.compile('\\W')  #'\W'匹配非字母字符， '*'匹配前一个字符0或多次
+listOfTokens = re.split(regEx, mySent)
+#print([tok.lower() for tok in listOfTokens if len(tok) > 0])
+
+emailText = open('email/ham/6.txt').read()
+listOfTokens = regEx.split(emailText)
+print(listOfTokens)
+"""
+
+print(bayes.spamTest())
+print(bayes.spamTest())

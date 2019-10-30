@@ -77,3 +77,38 @@ def testingNB():
     testEntry = ['stupid', 'garbage']
     thisDoc =array(setOfWords2Vec(myVocabList, testEntry))
     print(testEntry, 'classified as: ', classifyNB(thisDoc, p0V, p1V, pAb))
+
+def textParse(bigString):   #文件解析,将一个大字符串解析为字符串列表
+    import re
+    listOfTokens = re.split(r'\W', bigString)
+    return [tok.lower() for tok in listOfTokens if len(tok) > 2]    #所有字符串转换为小写，并去掉少于两个字符的字符串
+
+def spamTest(): #完整的垃圾邮件测试函数
+    docList = [];   classList = []; fullText = []
+    for i in range(1, 26):
+        wordList = textParse(open('email/spam/%d.txt' %i).read())
+        docList.append(wordList)    #文档列表
+        fullText.extend(wordList)   #把所有文件都放到一起
+        classList.append(1) #标记文档分类
+        wordList = textParse(open('email/ham/%d.txt' %i).read())
+        docList.append(wordList)    #把整个作为1项添加到后面
+        fullText.extend(wordList)   #把整个作为n项添加到后面
+        classList.append(0) #标记文档分类
+    vocabList = createVocabList(docList)    #建立词汇表
+    trainingSet = range(50)   #训练集
+    testSet = []    #测试集
+    for i in range(10): #随机选择10个文件作为测试集 称为留存交叉验证
+        randIndex = int(random.uniform(0, len(trainingSet)))    #随机生成一个不大于文件的数  random函数返回浮点数，左闭右开
+        testSet.append(trainingSet[randIndex])
+        del(list(trainingSet)[randIndex]) #从训练集中删除掉测试集的数据
+    trainMat = [];  trainClasses = []
+    for docIndex in trainingSet:    #训练算法
+        trainMat.append(setOfWords2Vec(vocabList, docList[docIndex]))   #构建词向量
+        trainClasses.append(classList[docIndex])    #记录训练文档的分类
+    p0V, p1V, pSpam = trainNB0(array(trainMat), array(trainClasses))
+    errorCount = 0
+    for docIndex in testSet:    #测试算法
+        wordVector = setOfWords2Vec(vocabList, docList[docIndex])
+        if classifyNB(array(wordVector), p0V, p1V, pSpam) != classList[docIndex]:
+            errorCount += 1
+    print('the error rate is: ', float(errorCount) / len(testSet))

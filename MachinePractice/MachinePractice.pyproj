@@ -38,6 +38,61 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="datingTestSet2.txt" />
+    <Content Include="email\ham\1.txt" />
+    <Content Include="email\ham\10.txt" />
+    <Content Include="email\ham\11.txt" />
+    <Content Include="email\ham\12.txt" />
+    <Content Include="email\ham\13.txt" />
+    <Content Include="email\ham\14.txt" />
+    <Content Include="email\ham\15.txt" />
+    <Content Include="email\ham\16.txt" />
+    <Content Include="email\ham\17.txt" />
+    <Content Include="email\ham\18.txt" />
+    <Content Include="email\ham\19.txt" />
+    <Content Include="email\ham\2.txt" />
+    <Content Include="email\ham\20.txt" />
+    <Content Include="email\ham\21.txt" />
+    <Content Include="email\ham\22.txt" />
+    <Content Include="email\ham\23.txt" />
+    <Content Include="email\ham\24.txt" />
+    <Content Include="email\ham\25.txt" />
+    <Content Include="email\ham\3.txt" />
+    <Content Include="email\ham\4.txt" />
+    <Content Include="email\ham\5.txt" />
+    <Content Include="email\ham\6.txt" />
+    <Content Include="email\ham\7.txt" />
+    <Content Include="email\ham\8.txt" />
+    <Content Include="email\ham\9.txt" />
+    <Content Include="email\spam\1.txt" />
+    <Content Include="email\spam\10.txt" />
+    <Content Include="email\spam\11.txt" />
+    <Content Include="email\spam\12.txt" />
+    <Content Include="email\spam\13.txt" />
+    <Content Include="email\spam\14.txt" />
+    <Content Include="email\spam\15.txt" />
+    <Content Include="email\spam\16.txt" />
+    <Content Include="email\spam\17.txt" />
+    <Content Include="email\spam\18.txt" />
+    <Content Include="email\spam\19.txt" />
+    <Content Include="email\spam\2.txt" />
+    <Content Include="email\spam\20.txt" />
+    <Content Include="email\spam\21.txt" />
+    <Content Include="email\spam\22.txt" />
+    <Content Include="email\spam\23.txt" />
+    <Content Include="email\spam\24.txt" />
+    <Content Include="email\spam\25.txt" />
+    <Content Include="email\spam\3.txt" />
+    <Content Include="email\spam\4.txt" />
+    <Content Include="email\spam\5.txt" />
+    <Content Include="email\spam\6.txt" />
+    <Content Include="email\spam\7.txt" />
+    <Content Include="email\spam\8.txt" />
+    <Content Include="email\spam\9.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="email\" />
+    <Folder Include="email\ham\" />
+    <Folder Include="email\spam\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
