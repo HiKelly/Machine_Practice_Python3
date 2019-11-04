@@ -12,6 +12,7 @@
     <OutputPath>.</OutputPath>
     <Name>MachinePractice</Name>
     <RootNamespace>MachinePractice</RootNamespace>
+    <SuppressConfigureTestFrameworkPrompt>true</SuppressConfigureTestFrameworkPrompt>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -27,10 +28,16 @@
     <Compile Include="4.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="5.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="bayes.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="kNN.py" />
+    <Compile Include="logRegres.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="treePlotter.py">
       <SubType>Code</SubType>
     </Compile>
@@ -88,6 +95,7 @@
     <Content Include="email\spam\7.txt" />
     <Content Include="email\spam\8.txt" />
     <Content Include="email\spam\9.txt" />
+    <Content Include="testSet.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="email\" />
