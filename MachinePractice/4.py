@@ -32,7 +32,12 @@ listOfTokens = re.split(regEx, mySent)
 emailText = open('email/ham/6.txt').read()
 listOfTokens = regEx.split(emailText)
 print(listOfTokens)
-"""
 
 print(bayes.spamTest())
 print(bayes.spamTest())
+"""
+
+import feedparser
+ny = feedparser.parse('http://newyork.craigslist.org/stp/index.rss')
+ny['entries']
+print(len(ny['entries']))
