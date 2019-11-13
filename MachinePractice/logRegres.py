@@ -63,7 +63,7 @@ def stocGradAscent1(dataMatrix, classLabels, numIter = 150):    #改进的随机
     m, n = shape(dataMatrix)
     weights = ones(n)
     for j in range(numIter):    
-        dataIndex = list(range(m))    #默认迭代更新150词
+        dataIndex = list(range(m))    #默认迭代更新150词,python3中range()返回的不是数组而是range对象，需要强制类型转换
         for i in range(m):
             alpha = 4 / (1.0 + j + i) + 0.01    #alpha每次迭代时需要调整
             randIndex = int(random.uniform(0, len(dataIndex)))
@@ -72,3 +72,39 @@ def stocGradAscent1(dataMatrix, classLabels, numIter = 150):    #改进的随机
             weights = weights + alpha * error * dataMatrix[randIndex]
             del(dataIndex[randIndex])
     return weights
+
+def classifyVector(inX, weights):   #logistic回归分类函数
+    prob = sigmoid(sum(inX * weights))
+    if prob > 0.5:  return 1.0
+    else:   return 0.0
+
+def colicTest():    #打开测试集和训练集，并对数据进行格式化处理
+    frTrain = open('horseColicTraining.txt')    #导入训练集
+    frTest = open('horseColicTest.txt') #导入测试集
+    trainingSet = [];   trainingLabels = []
+    for line in frTrain.readlines():    #处理数据
+        currLine = line.strip().split('\t')
+        lineArr = []
+        for i in range(21):
+            lineArr.append(float(currLine[i]))
+        trainingSet.append(lineArr)
+        trainingLabels.append(float(currLine[21]))
+    trainWeights = stocGradAscent1(array(trainingSet), trainingLabels, 500)
+    errorCount = 0; numTestVec = 0.0
+    for line in frTest.readlines():
+        numTestVec += 1.0
+        currLine = line.strip().split('\t')
+        lineArr = []
+        for i in range(21):
+            lineArr.append(float(currLine[i]))
+        if int(classifyVector(array(lineArr), trainWeights)) != int(currLine[21]):
+            errorCount += 1
+    errorRate = (float(errorCount) / numTestVec)    #计算错误率
+    print('the error rate of this test is %f ' %errorRate)
+    return errorRate
+
+def multiTest():    #多次测试，并求平均结果
+    numTests = 10;  errorSum = 0.0
+    for k in range(numTests):
+        errorSum += colicTest()
+    print("after %d iterations the average error rate is: %f" %(numTests, errorSum/float(numTests)))

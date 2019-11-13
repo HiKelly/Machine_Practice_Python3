@@ -95,6 +95,8 @@
     <Content Include="email\spam\7.txt" />
     <Content Include="email\spam\8.txt" />
     <Content Include="email\spam\9.txt" />
+    <Content Include="horseColicTest.txt" />
+    <Content Include="horseColicTraining.txt" />
     <Content Include="testSet.txt" />
   </ItemGroup>
   <ItemGroup>
