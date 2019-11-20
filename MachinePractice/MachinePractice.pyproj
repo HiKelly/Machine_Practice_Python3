@@ -31,11 +31,17 @@
     <Compile Include="5.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="6.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="bayes.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="kNN.py" />
     <Compile Include="logRegres.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="svmMLiA.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="treePlotter.py">
@@ -98,6 +104,7 @@
     <Content Include="horseColicTest.txt" />
     <Content Include="horseColicTraining.txt" />
     <Content Include="testSet.txt" />
+    <Content Include="testSet6.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="email\" />
